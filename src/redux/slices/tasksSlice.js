@@ -34,9 +34,20 @@ const tasksSlice = createSlice({
       state.list = action.payload;
       localStorage.setItem("tasks", JSON.stringify(state.list));
     },
+    // Clear all tasks at once
+    clearTasks: (state) => {
+      state.list = [];
+      localStorage.setItem("tasks", JSON.stringify(state.list));
+    },
   },
 });
 
-export const { addTask, deleteTask, updateTask, toggleComplete, setTasks } =
-  tasksSlice.actions;
+export const {
+  addTask,
+  deleteTask,
+  updateTask,
+  toggleComplete,
+  setTasks,
+  clearTasks, // <-- Export clearTasks
+} = tasksSlice.actions;
 export default tasksSlice.reducer;

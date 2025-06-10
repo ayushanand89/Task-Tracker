@@ -4,6 +4,7 @@ import {
   deleteTask,
   updateTask,
   toggleComplete,
+  clearTasks,
 } from "../redux/slices/tasksSlice";
 import toast from "react-hot-toast";
 import TaskItem from "./TaskItem";
@@ -119,11 +120,31 @@ export default function TaskList() {
     toast.success("Task deleted");
   };
 
+  const handleClearAll = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete all tasks? This cannot be undone."
+      )
+    ) {
+      dispatch(clearTasks());
+      toast.success("All tasks cleared");
+    }
+  };
+
   return (
     <div className="bg-white border border-indigo-100 rounded-xl shadow p-4 w-full max-w-2xl mx-auto">
-      <h2 className="text-2xl font-semibold text-blue-700 mb-6 text-center">
-        Your tasks...
-      </h2>
+      <div className="flex flex-row items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold text-blue-700 text-left">
+          Your tasks...
+        </h2>
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-medium text-sm transition"
+          onClick={handleClearAll}
+          disabled={tasks.length === 0}
+        >
+          Clear All
+        </button>
+      </div>
       <TaskListControls
         search={search}
         setSearch={setSearch}
