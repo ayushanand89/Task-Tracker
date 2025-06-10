@@ -100,14 +100,15 @@ export default function TaskItem({
           ) : (
             <>
               <button
-                className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full p-1 w-7 h-7 flex items-center justify-center transition"
+                className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center transition"
                 onClick={() => handleEdit(task)}
                 aria-label="Edit"
+                style={{ minWidth: "1.75rem", minHeight: "1.75rem" }}
               >
                 <FiEdit2 className="w-4 h-4" />
               </button>
               <button
-                className="bg-red-500 hover:bg-red-600 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center shadow-sm transition"
+                className="bg-red-500 hover:bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center shadow-sm transition"
                 onClick={() => {
                   if (
                     window.confirm("Are you sure you want to delete this task?")
@@ -117,9 +118,9 @@ export default function TaskItem({
                 }}
                 aria-label="Delete"
                 tabIndex={0}
-                style={{ minWidth: "1.5rem" }}
+                style={{ minWidth: "1.75rem", minHeight: "1.75rem" }}
               >
-                <FiX className="w-3.5 h-3.5" />
+                <FiX className="w-4 h-4" />
               </button>
             </>
           )}
