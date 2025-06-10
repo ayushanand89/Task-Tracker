@@ -142,12 +142,19 @@ export default function TaskItem({
               className="block text-xs text-indigo-700 truncate mt-1 ml-7 sm:ml-0"
               title={task.dueDate}
             >
-              {new Date(task.dueDate).toLocaleString(undefined, {
-                hour: "2-digit",
-                minute: "2-digit",
-                day: "2-digit",
-                month: "2-digit",
-              })}
+              {(() => {
+                const d = new Date(task.dueDate);
+                // Swap day and month in the output, keep time as before
+                const formatted = d
+                  .toLocaleString(undefined, {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    day: "2-digit",
+                    month: "2-digit",
+                  })
+                  .replace(/^(\d{2})\/(\d{2})/, (_, mm, dd) => `${dd}/${mm}`);
+                return formatted;
+              })()}
             </span>
           )
         )}
